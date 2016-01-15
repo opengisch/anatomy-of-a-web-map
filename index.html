@@ -1,13 +1,30 @@
-<!DOCTYPE html><html><head><title></title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type='text/css'>
+<!DOCTYPE html>
+<html xmlns:http="http://www.w3.org/1999/xhtml"><head><title></title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type='text/css'>
 body {
   font-family: 'Helvetica';
   letter-spacing:-5px;
-  background:#000;
-  background-size:100%;
+  background-size: 100%;
+  background-color: #80CC28;
   color:#fff;
   margin:0;
   padding:0;
   font-weight:bold;
+}
+
+body.with_logo {
+    background-position-x: right;
+    background-position-y: -100%;
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-image: url("images/copyrighted/openGIS-logo-round-green-no-text-bg-cut-white.svg");
+}
+
+body.no_logo {
+    background-image:none;
+}
+
+div.green_text{
+    color: #80CC28;
 }
 
 h1, h2, h3, p {
@@ -16,11 +33,11 @@ h1, h2, h3, p {
 
 em, a {
   font-style:normal;
-  color:#8dbd0c;
+  color:#2880cc;
 }
 
 a {
-  background: #34d0e7;
+  background: #2880cc;
   color:#000;
   text-decoration:none;
 }
@@ -48,10 +65,15 @@ window.onload = function() {
         e.style.fontSize = i + 'px';
         if (e.firstChild.nodeName === 'IMG') {
             document.body.style.backgroundImage = 'url(' + e.firstChild.src + ')';
+            document.body.className = document.body.className.replace(/with_logo/g , '');
             e.firstChild.style.display = 'none';
+        }
+        else if (e.className.match('no_logo')) {
+            document.body.style.backgroundImage = '';
         } else {
             document.body.style.backgroundImage = '';
             document.body.style.backgroundColor = e.style.backgroundColor;
+            document.body.className += ' with_logo'
         }
         while (
             e.offsetWidth > window.innerWidth ||
@@ -84,9 +106,16 @@ window.onload = function() {
     go(cur);
 };
 </script></head><body>
-<div>Anatomy of a <em>Web Map</em></div>
-<div>By <a href="http://stamen.com/studio/alan">Alan McConchie</a> :) and <a href="http://stamen.com/studio/beth">Beth Schechter</a> :D</div>
-<div>Housekeeping!<br>You can follow along here: <a href="http://sta.mn/qhg">sta.mn/qhg</a>. Links are in blue boxes, <em>green</em> is just emphasis. You can comment and edit on <a href="https://github.com/maptime/anatomy-of-a-web-map/">github!</a></div>
+<div><img src="images/copyrighted/openGIS-logo.svg"><em>Anatomy of a Web Map</em></div>
+<div class="green_text"><img src="images/copyrighted/thinking.jpg"/><a href="http://berna.io">Marco Bernasocchi</a>
+<br/>MSc in GIS @ UNIZH
+<br/>Developer, Consultant, Teacher & foremost Geek
+<br/>Skier, Climber, Diver
+</div>
+<div><img src="images/copyrighted/27summits-17.jpeg"/>
+    <br/><br/><br/><br/>
+    <a href="http://twitter.com/mbernasocchi">@mbernasocchi</a><br/><a href="mailto:marco@opengis.ch">marco@opengis.ch</a></div>
+<div>Housekeeping!<br>You can follow along here: <a href="http://sta.mn/qhg">sta.mn/qhg</a>. Links are in purple/ boxes, <em>blue</em> is just emphasis. You can comment and edit on <a href="https://github.com/maptime/anatomy-of-a-web-map/">github!</a></div>
 <div>Now let's get started :)</div>
 <div>Today we will be talking about the <em>very most basic principles</em> of web mapping.</div>
 <div>We're including a little history, so you can get an idea of how web maps have come to be.</div>
