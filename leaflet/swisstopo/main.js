@@ -16,16 +16,22 @@ function init() {
 
     var map = new L.Map('map', {
         crs: crs,
-        continuousWorld: true,
-        worldCopyJump: false,
+        //continuousWorld: true,
+        //worldCopyJump: false,
         scale: scale
     });
 
     map.on('mousemove', function(e) {
-        var coords = document.getElementById('coords');
+        var coords = $('#coords');
         var projected = crs.project(e.latlng);
-        coords.innerHTML = "LV03: " + projected.x.toFixed(0) + "/" + projected.y.toFixed(0);
+        coords.text("LV03: " + projected.x.toFixed(0) + "/" + projected.y.toFixed(0));
     });
+
+    map.on('click', function(e){
+        console.log(e.latlng);
+        url = 'https://www.google.ch/maps/@' + e.latlng['lat'] + ',' + e.latlng['lng'] + ',14z'
+        console.log(url)
+    })
 
     var mapUrl = 'https://wmts6.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/20140520/21781/{z}/{y}/{x}.jpeg',
     attrib = 'Map data &copy; 2014 swisstopo',
